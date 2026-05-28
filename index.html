@@ -11,6 +11,62 @@
         body {
             font-family: 'Quicksand', sans-serif;
         }
+
+        html {
+            scroll-behavior: smooth; /* Tạo hiệu ứng cuộn trang mượt mà */
+            scroll-padding-top: 130px; /* Bù trừ khoảng trống bằng đúng độ cao của thanh Header */
+        }
+
+
+        /* Cấu hình nút Zalo nổi */
+        .zalo-float {
+            position: fixed;
+            bottom: 24px; /* Cách mép dưới màn hình 24px */
+            right: 24px; /* Cách mép phải màn hình 24px */
+            width: 56px; /* Chiều rộng nút */
+            height: 56px; /* Chiều cao nút */
+            z-index: 9999; /* Luôn nằm trên cùng các phần tử khác */
+            border-radius: 50%; /* Làm tròn nút */
+            background-color: #0068ff; /* Màu nền xanh Zalo phòng trường hợp ảnh lỗi */
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            animation: zaloRung 3s infinite ease-in-out; /* Hiệu ứng rung lặp lại mỗi 3 giây */
+        }
+
+            /* Hiệu ứng phóng to nhẹ khi di chuột vào (Hover) */
+            .zalo-float:hover {
+                transform: scale(1.15) rotate(5deg);
+            }
+
+        /* Định nghĩa hiệu ứng rung lắc nhẹ thu hút khách hàng */
+        @keyframes zaloRung {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            90% {
+                transform: scale(1) translate(0, 0);
+            }
+
+            92% {
+                transform: scale(1.05) translate(-2px, 2px);
+            }
+
+            94% {
+                transform: scale(1.05) translate(2px, -2px);
+            }
+
+            96% {
+                transform: scale(1.05) translate(-2px, -2px);
+            }
+
+            98% {
+                transform: scale(1.05) translate(2px, 2px);
+            }
+        }
+
+
+
     </style>
 </head>
 <body class="bg-orange-50 text-gray-800 overflow-x-hidden">
@@ -23,7 +79,7 @@
                     <i class="fa-solid fa-location-dot mr-1"></i> Địa chỉ: 572 Âu Cơ, P. Liên Chiểu, TP. Đà Nẵng
                 </div>
                 <div>
-                    <i class="fa-solid fa-phone mr-1"></i> Hotline đặt hàng: <a href="tel:0898.222.465" class="underline hover:text-orange-200">0783.739.519</a>
+                    <i class="fa-solid fa-phone mr-1"></i> Hotline đặt hàng: <a href="tel:0898.222.465" class="underline hover:text-orange-200">0898.222.465</a>
                 </div>
             </div>
         </div>
@@ -613,21 +669,21 @@
                 rawTotalAmount += item.price * item.quantity;
 
                 const itemHTML = `
-                                <div class="flex items-center justify-between border-b border-gray-100 pb-3">
-                                    <div class="flex items-center gap-3">
-                                        <img src="${item.img}" class="w-12 h-12 object-cover rounded-xl shadow-sm" alt="${item.name}">
-                                        <div>
-                                            <h4 class="font-bold text-gray-900 text-sm">${item.name}</h4>
-                                            <p class="text-xs text-orange-600 font-semibold">${formatMoney(item.price)}</p>
+                                    <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+                                        <div class="flex items-center gap-3">
+                                            <img src="${item.img}" class="w-12 h-12 object-cover rounded-xl shadow-sm" alt="${item.name}">
+                                            <div>
+                                                <h4 class="font-bold text-gray-900 text-sm">${item.name}</h4>
+                                                <p class="text-xs text-orange-600 font-semibold">${formatMoney(item.price)}</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-lg">
+                                            <button onclick="changeQuantity('${item.name}', -1)" class="w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none">-</button>
+                                            <span class="text-sm font-bold w-4 text-center">${item.quantity}</span>
+                                            <button onclick="changeQuantity('${item.name}', 1)" class="w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none">+</button>
                                         </div>
                                     </div>
-                                    <div class="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-lg">
-                                        <button onclick="changeQuantity('${item.name}', -1)" class="w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none">-</button>
-                                        <span class="text-sm font-bold w-4 text-center">${item.quantity}</span>
-                                        <button onclick="changeQuantity('${item.name}', 1)" class="w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none">+</button>
-                                    </div>
-                                </div>
-                            `;
+                                `;
                 itemsContainer.insertAdjacentHTML('beforeend', itemHTML);
             });
 
@@ -701,5 +757,8 @@
                 });
         }
     </script>
+    <a href="https://zalo.me/0898222465" target="_blank" rel="noopener noreferrer" class="zalo-float shadow-xl flex items-center justify-center" title="Chat qua Zalo">
+        <img src="./image/zalo.jpg" alt="Zalo" class="w-full h-full object-cover">
+    </a>
 </body>
 </html>
