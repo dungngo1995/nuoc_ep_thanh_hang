@@ -17,7 +17,6 @@
             scroll-padding-top: 130px; /* Bù trừ khoảng trống bằng đúng độ cao của thanh Header */
         }
 
-
         /* Cấu hình nút Zalo nổi */
         .zalo-float {
             position: fixed;
@@ -69,7 +68,6 @@
 <body class="bg-orange-50 text-gray-800 overflow-x-hidden">
 
     <header class="bg-white shadow-sm sticky top-0 z-40">
-
         <div class="bg-orange-600 text-white text-xs py-2 px-4">
             <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 text-center sm:text-left font-semibold">
                 <div>
@@ -80,8 +78,6 @@
                 </div>
             </div>
         </div>
-
-
 
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-orange-600 flex items-center gap-2">
@@ -121,9 +117,7 @@
         </div>
         <div class="flex-1 relative">
             <div class="absolute inset-0 bg-orange-200 rounded-full filter blur-3xl opacity-40 -z-10 transform scale-90"></div>
-            <img src="./image/anhtesst.jpg"
-                 alt="Nước ép tươi ngon"
-                 class="w-full max-w-md mx-auto rounded-3xl shadow-2xl object-cover h-[450px]">
+            <img src="./image/anhtesst.jpg" alt="Nước ép tươi ngon" class="w-full max-w-md mx-auto rounded-3xl shadow-2xl object-cover h-[450px]">
         </div>
     </section>
 
@@ -144,7 +138,6 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="menu-grid">
-
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="special">
                     <div class="overflow-hidden h-64 relative">
                         <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-sm">Món Đặc Biệt ⭐</span>
@@ -429,7 +422,7 @@
                             <span class="text-orange-600 font-bold text-lg">10.000đ</span>
                         </div>
                         <p class="text-gray-500 text-sm mb-6">Trà lài thơm nhẹ kết hợp cốt tắc tươi và một chút mật ong rừng thanh ngọt, giải nhiệt cực tốt.</p>
-                        <button onclick="addToCart('Trà Tắc Mật Ong', 10000, 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop& Lake=80&w=100')" class="w-full bg-white text-orange-500 border border-orange-500 font-semibold py-2.5 rounded-xl hover:bg-orange-500 hover:text-white transition flex items-center justify-center gap-2">
+                        <button onclick="addToCart('Trà Tắc Mật Ong', 10000, 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&q=80&w=100')" class="w-full bg-white text-orange-500 border border-orange-500 font-semibold py-2.5 rounded-xl hover:bg-orange-500 hover:text-white transition flex items-center justify-center gap-2">
                             <i class="fa-solid fa-plus text-sm"></i> Thêm vào giỏ
                         </button>
                     </div>
@@ -466,7 +459,6 @@
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -545,7 +537,7 @@
 
             <div id="qr-payment-area" class="hidden bg-white border border-gray-200 p-4 rounded-xl flex flex-col items-center justify-center space-y-3 text-center">
                 <p class="text-xs text-red-500 font-bold"><i class="fa-solid fa-circle-info"></i> Hãy kiểm tra thông tin chính xác trước khi chuyển khoản khách yêu nhé!</p>
-                <img id="qr-code-img" src="" alt="Mã QR thanh toán" class="w-44 h-44 object-contain border border-gray-100 p-1 rounded-lg shadow-sm">
+                <img id="qr-code-img" src="" alt="Mã QR thanh toán" class="w-44 h-44 object-contain border border-gray-100 p-1 rounded-lg shadow-sm transition-opacity duration-200">
 
                 <div class="text-xs text-gray-700 bg-orange-50/60 p-3 rounded-lg w-full text-left space-y-1 border border-orange-100 font-medium">
                     <p><i class="fa-solid fa-user text-orange-500 w-4"></i> Chủ TK: <span class="font-bold text-gray-900">PHAN THỊ THANH HẰNG</span></p>
@@ -600,23 +592,27 @@
             <p>&copy; 2026 Tiệm Nước Ép Nhà THÓC - Thiết kế bởi dungngo1995</p>
         </div>
     </footer>
+
     <script>
         let cart = [];
         let rawTotalAmount = 0; // Tổng thanh toán cuối cùng gồm cả phí ship công bố ra mã QR
 
-        // KHỞI TẠO LẮNG NGHE SỰ KIỆN TẬP TRUNG NGAY KHI TRANG TẢI XONG
         document.addEventListener("DOMContentLoaded", function () {
             const itemsContainer = document.getElementById('cart-items-container');
+            const qrImg = document.getElementById('qr-code-img');
 
-            // Lắng nghe mọi cú click chuột diễn ra bên trong khung giỏ hàng
+            // Khi ảnh QR tải xong từ VietQR, chuyển opacity về bình thường
+            if (qrImg) {
+                qrImg.onload = function () {
+                    qrImg.style.opacity = "1";
+                };
+            }
+
             itemsContainer.addEventListener('click', function (event) {
                 const target = event.target;
-
-                // Kiểm tra xem phần tử được click có phải là nút tăng/giảm số lượng không
                 if (target.classList.contains('quantity-btn')) {
                     const name = target.getAttribute('data-name');
                     const delta = parseInt(target.getAttribute('data-delta'), 10);
-
                     if (name && !isNaN(delta)) {
                         changeQuantity(name, delta);
                     }
@@ -648,6 +644,7 @@
             const labelQr = document.getElementById('label-qr');
             const qrArea = document.getElementById('qr-payment-area');
             const sidebar = document.getElementById('cart-sidebar');
+            const qrImg = document.getElementById('qr-code-img');
 
             if (method === 'COD') {
                 labelCod.className = "border border-orange-500 bg-orange-50 p-3 rounded-xl flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-800 transition";
@@ -656,10 +653,13 @@
             } else {
                 labelQr.className = "border border-orange-500 bg-orange-50 p-3 rounded-xl flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-800 transition";
                 labelCod.className = "border border-gray-200 bg-white p-3 rounded-xl flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-800 transition";
+
+                // Mờ ảnh cũ đi để báo hiệu đang tải mã QR mới (Tối ưu độ trễ)
+                if (qrImg) qrImg.style.opacity = "0.3";
+
                 qrArea.classList.remove('hidden');
                 updatePaymentInfo();
 
-                // Tự động cuộn xuống dưới cùng của Sidebar khi bấm chọn QR để hiện nút Xác nhận
                 setTimeout(() => {
                     sidebar.scrollTo({
                         top: sidebar.scrollHeight,
@@ -723,26 +723,18 @@
 
             cart[itemIndex].quantity += delta;
 
-            // XỬ LÝ TRIỆT ĐỂ: Cắt trực tiếp phần tử khỏi vùng lưu trữ mảng gốc trong RAM bằng splice
             if (cart[itemIndex].quantity <= 0) {
                 cart.splice(itemIndex, 1);
             }
             updateCartUI();
         }
 
-        // HÀM TÍNH PHÍ SHIP THEO SỐ LY THEO ĐÚNG LOGIC YÊU CẦU
         function calculateShipping(totalItems) {
-            if (totalItems <= 0) return 0; // Trả về 0đ nếu không có ly nào
-
-            if (totalItems >= 10) {
-                return 0;
-            } else if (totalItems >= 7) {
-                return 10000;
-            } else if (totalItems >= 4) {
-                return 15000;
-            } else if (totalItems >= 1) {
-                return 25000;
-            }
+            if (totalItems <= 0) return 0;
+            if (totalItems >= 10) return 0;
+            if (totalItems >= 7) return 10000;
+            if (totalItems >= 4) return 15000;
+            if (totalItems >= 1) return 25000;
             return 0;
         }
 
@@ -760,7 +752,6 @@
 
             itemsContainer.innerHTML = '';
 
-            // BẮT ĐIỀU KIỆN GIỎ TRỐNG TRIỆT ĐỂ: Nếu không còn phần tử nào, ép cứng tất cả số tiền hiển thị về 0đ và ngắt hàm ngay bằng return
             if (cart.length === 0 || totalItems <= 0) {
                 countBadge.classList.add('opacity-0');
                 shippingNotice.classList.add('hidden');
@@ -778,7 +769,6 @@
             countBadge.textContent = totalItems;
             countBadge.classList.remove('opacity-0');
 
-            // Kiểm tra hiển thị thông báo nếu khách chọn đúng 7 ly
             if (totalItems === 7) {
                 shippingNotice.classList.remove('hidden');
             } else {
@@ -787,8 +777,6 @@
 
             cart.forEach(item => {
                 drinkTotalAmount += item.price * item.quantity;
-
-                // THAY THẾ ONCLICK THÀNH THUỘC TÍNH DATA đính kèm để dùng cơ chế Event Delegation an toàn
                 const itemHTML = `
                             <div class="flex items-center justify-between border-b border-gray-100 pb-3">
                                 <div class="flex items-center gap-3">
@@ -808,16 +796,20 @@
                 itemsContainer.insertAdjacentHTML('beforeend', itemHTML);
             });
 
-            // Tính toán tổng số tiền có kèm ship khi giỏ hàng có món
             const shippingFee = calculateShipping(totalItems);
             rawTotalAmount = drinkTotalAmount + shippingFee;
 
-            // Đổ dữ liệu chuẩn lên giao diện
             subtotalPriceEl.textContent = formatMoney(drinkTotalAmount);
             shippingPriceEl.textContent = shippingFee === 0 ? 'Miễn phí' : formatMoney(shippingFee);
             totalPriceEl.textContent = formatMoney(rawTotalAmount);
 
-            updatePaymentInfo();
+            // NÂNG CẤP: Tự làm mới mã QR khi thay đổi số lượng món trong giỏ hàng
+            const currentMethod = document.querySelector('input[name="payment-method"]:checked');
+            if (currentMethod && currentMethod.value === 'QR') {
+                const qrImg = document.getElementById('qr-code-img');
+                if (qrImg) qrImg.style.opacity = "0.3";
+                updatePaymentInfo();
+            }
         }
 
         function checkout() {
@@ -864,7 +856,7 @@
             formData.append('phone', phone);
             formData.append('cartDetails', `${cartDetails} [Tiền nước: ${drinkPrice}, Ship: ${shipPrice}, Hình thức: ${methodText}]`);
             formData.append('totalPrice', totalPrice);
-            formData.append('address', address); // Gửi thêm trường địa chỉ lên Google Sheet
+            formData.append('address', address);
 
             const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyoDTUP-I-t10YMEtHSHNq1TkzQDpgEDqfejPFhsrzqot1vU9Glo_Y23iniLIS_MeaM4A/exec';
 
