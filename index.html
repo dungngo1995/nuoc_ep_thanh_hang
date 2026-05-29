@@ -211,7 +211,7 @@
                     </div>
                 </div>
 
-                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="cafe">
+                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-category="cafe">
                     <div class="overflow-hidden h-64">
                         <img src="./image/caphesuasaigon.jpg" alt="Cà Phê Sữa Sài Gòn" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
@@ -222,6 +222,22 @@
                         </div>
                         <p class="text-gray-500 text-sm mb-6">Thưởng thức hương vị cà phê sữa Sài Gòn nguyên bản, thơm đậm và mát lạnh đầy tỉnh táo.</p>
                         <button onclick="addToCart('Cà Phê Sữa Sài Gòn', 12000, './image/caphesuasaigon.jpg')" class="w-full bg-white text-orange-500 border border-orange-500 font-semibold py-2.5 rounded-xl hover:bg-orange-500 hover:text-white transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-plus text-sm"></i> Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-category="cafe">
+                    <div class="overflow-hidden h-64">
+                        <img src="./image/bacxiu.jpg" alt="Bạc Xỉu Đá" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-950">Bạc Xỉu Đá</h3>
+                            <span class="text-orange-600 font-bold text-lg">14.000đ</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-6">Bạc xỉu không chỉ là cà phê, mà là cảm giác dịu dàng trong từng ngụm.</p>
+                        <button onclick="addToCart('Bạc Xỉu Đá', 14000, './image/bacxiu.jpg')" class="w-full bg-white text-orange-500 border border-orange-500 font-semibold py-2.5 rounded-xl hover:bg-orange-500 hover:text-white transition flex items-center justify-center gap-2">
                             <i class="fa-solid fa-plus text-sm"></i> Thêm vào giỏ
                         </button>
                     </div>
@@ -270,6 +286,22 @@
                         </div>
                         <p class="text-gray-500 text-sm mb-6">Cam sành tươi mọng, ép nguyên chất từ những trái cam tuyển chọn, giàu Vitamin C tự nhiên, tươi mát mỗi ngày.</p>
                         <button onclick="addToCart('Nước Cam Nguyên Chất', 15000, './image/nuoccam.jpg')" class="w-full bg-white text-orange-500 border border-orange-500 font-semibold py-2.5 rounded-xl hover:bg-orange-500 hover:text-white transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-plus text-sm"></i> Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="juice">
+                    <div class="overflow-hidden h-64">
+                        <img src="./image/nuocmia.jpg" alt="Nước Mía Nguyên Chất" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-950">Nước Mía Nguyên Chất</h3>
+                            <span class="text-orange-600 font-bold text-lg">10.000đ</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-6">Cam sành tươi mọng, ép nguyên chất từ những trái cam tuyển chọn, giàu Vitamin C tự nhiên, tươi mát mỗi ngày.</p>
+                        <button onclick="addToCart('Nước Mía Nguyên Chất', 10000, './image/nuocmia.jpg')" class="w-full bg-white text-orange-500 border border-orange-500 font-semibold py-2.5 rounded-xl hover:bg-orange-500 hover:text-white transition flex items-center justify-center gap-2">
                             <i class="fa-solid fa-plus text-sm"></i> Thêm vào giỏ
                         </button>
                     </div>
@@ -567,10 +599,29 @@
             <p>&copy; 2026 Tiệm Nước Ép Nhà THÓC - Thiết kế bởi dungngo1995</p>
         </div>
     </footer>
-
     <script>
         let cart = [];
         let rawTotalAmount = 0; // Tổng thanh toán cuối cùng gồm cả phí ship công bố ra mã QR
+
+        // KHỞI TẠO LẮNG NGHE SỰ KIỆN TẬP TRUNG NGAY KHI TRANG TẢI XONG
+        document.addEventListener("DOMContentLoaded", function () {
+            const itemsContainer = document.getElementById('cart-items-container');
+
+            // Lắng nghe mọi cú click chuột diễn ra bên trong khung giỏ hàng
+            itemsContainer.addEventListener('click', function (event) {
+                const target = event.target;
+
+                // Kiểm tra xem phần tử được click có phải là nút tăng/giảm số lượng không
+                if (target.classList.contains('quantity-btn')) {
+                    const name = target.getAttribute('data-name');
+                    const delta = parseInt(target.getAttribute('data-delta'), 10);
+
+                    if (name && !isNaN(delta)) {
+                        changeQuantity(name, delta);
+                    }
+                }
+            });
+        });
 
         function filterMenu(category) {
             const buttons = document.querySelectorAll('.tab-btn');
@@ -595,6 +646,7 @@
             const labelCod = document.getElementById('label-cod');
             const labelQr = document.getElementById('label-qr');
             const qrArea = document.getElementById('qr-payment-area');
+            const sidebar = document.getElementById('cart-sidebar');
 
             if (method === 'COD') {
                 labelCod.className = "border border-orange-500 bg-orange-50 p-3 rounded-xl flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-800 transition";
@@ -605,6 +657,14 @@
                 labelCod.className = "border border-gray-200 bg-white p-3 rounded-xl flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-800 transition";
                 qrArea.classList.remove('hidden');
                 updatePaymentInfo();
+
+                // Tự động cuộn xuống dưới cùng của Sidebar khi bấm chọn QR để hiện nút Xác nhận
+                setTimeout(() => {
+                    sidebar.scrollTo({
+                        top: sidebar.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                }, 50);
             }
         }
 
@@ -624,7 +684,6 @@
 
             document.getElementById('qr-content-text').textContent = syntax;
 
-            // ĐỒNG BỘ THÔNG TIN ĐÚNG SỐ TÀI KHOẢN VÀ NGÂN HÀNG CỦA CHỊ HẰNG
             const BANK_ID = "VCB";
             const ACCOUNT_NO = "0041000341822";
 
@@ -658,24 +717,29 @@
         }
 
         function changeQuantity(name, delta) {
-            const item = cart.find(item => item.name === name);
-            if (!item) return;
-            item.quantity += delta;
-            if (item.quantity <= 0) {
-                cart = cart.filter(i => i.name !== name);
+            const itemIndex = cart.findIndex(item => item.name === name);
+            if (itemIndex === -1) return;
+
+            cart[itemIndex].quantity += delta;
+
+            // XỬ LÝ TRIỆT ĐỂ: Cắt trực tiếp phần tử khỏi vùng lưu trữ mảng gốc trong RAM bằng splice
+            if (cart[itemIndex].quantity <= 0) {
+                cart.splice(itemIndex, 1);
             }
             updateCartUI();
         }
 
         // HÀM TÍNH PHÍ SHIP THEO SỐ LY THEO ĐÚNG LOGIC YÊU CẦU
         function calculateShipping(totalItems) {
+            if (totalItems <= 0) return 0; // Trả về 0đ nếu không có ly nào
+
             if (totalItems >= 10) {
                 return 0;
-            } else if (totalItems >= 7) { // Từ 7 đến 9 ly theo bậc thang mô tả bài toán
+            } else if (totalItems >= 7) {
                 return 10000;
-            } else if (totalItems >= 4) { // Từ 4 đến 6 ly
+            } else if (totalItems >= 4) {
                 return 15000;
-            } else if (totalItems >= 1) { // Từ 1 đến 3 ly
+            } else if (totalItems >= 1) {
                 return 25000;
             }
             return 0;
@@ -691,29 +755,27 @@
             const shippingNotice = document.getElementById('shipping-notice');
 
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            let drinkTotalAmount = 0;
 
-            // ĐƯA LOGIC KIỂM TRA GIỎ TRỐNG LÊN TRÊN ĐẦU ĐỂ RESET SỐ TIỀN VỀ 0 NGAY LẬP TỨC
-            if (cart.length === 0) {
+            itemsContainer.innerHTML = '';
+
+            // BẮT ĐIỀU KIỆN GIỎ TRỐNG TRIỆT ĐỂ: Nếu không còn phần tử nào, ép cứng tất cả số tiền hiển thị về 0đ và ngắt hàm ngay bằng return
+            if (cart.length === 0 || totalItems <= 0) {
                 countBadge.classList.add('opacity-0');
                 shippingNotice.classList.add('hidden');
-                itemsContainer.innerHTML = '';
                 itemsContainer.appendChild(emptyMsg);
+
                 subtotalPriceEl.textContent = '0đ';
                 shippingPriceEl.textContent = '0đ';
                 totalPriceEl.textContent = '0đ';
                 rawTotalAmount = 0;
+
                 updatePaymentInfo();
                 return;
             }
 
-            if (totalItems > 0) {
-                countBadge.textContent = totalItems;
-                countBadge.classList.remove('opacity-0');
-            } else {
-                countBadge.classList.add('opacity-0');
-            }
-
-            itemsContainer.innerHTML = '';
+            countBadge.textContent = totalItems;
+            countBadge.classList.remove('opacity-0');
 
             // Kiểm tra hiển thị thông báo nếu khách chọn đúng 7 ly
             if (totalItems === 7) {
@@ -722,34 +784,34 @@
                 shippingNotice.classList.add('hidden');
             }
 
-            let drinkTotalAmount = 0;
             cart.forEach(item => {
                 drinkTotalAmount += item.price * item.quantity;
 
+                // THAY THẾ ONCLICK THÀNH THUỘC TÍNH DATA đính kèm để dùng cơ chế Event Delegation an toàn
                 const itemHTML = `
-                                <div class="flex items-center justify-between border-b border-gray-100 pb-3">
-                                    <div class="flex items-center gap-3">
-                                        <img src="${item.img}" class="w-12 h-12 object-cover rounded-xl shadow-sm" alt="${item.name}">
-                                        <div>
-                                            <h4 class="font-bold text-gray-900 text-sm">${item.name}</h4>
-                                            <p class="text-xs text-orange-600 font-semibold">${formatMoney(item.price)}</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-lg">
-                                        <button onclick="changeQuantity('${item.name}', -1)" class="w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none">-</button>
-                                        <span class="text-sm font-bold w-4 text-center">${item.quantity}</span>
-                                        <button onclick="changeQuantity('${item.name}', 1)" class="w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none">+</button>
-                                    </div>
+                        <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+                            <div class="flex items-center gap-3">
+                                <img src="${item.img}" class="w-12 h-12 object-cover rounded-xl shadow-sm" alt="${item.name}">
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-sm">${item.name}</h4>
+                                    <p class="text-xs text-orange-600 font-semibold">${formatMoney(item.price)}</p>
                                 </div>
-                            `;
+                            </div>
+                            <div class="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-lg">
+                                <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="-1">-</button>
+                                <span class="text-sm font-bold w-4 text-center">${item.quantity}</span>
+                                <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="1">+</button>
+                            </div>
+                        </div>
+                    `;
                 itemsContainer.insertAdjacentHTML('beforeend', itemHTML);
             });
 
-            // Tính toán tổng số tiền có kèm ship
+            // Tính toán tổng số tiền có kèm ship khi giỏ hàng có món
             const shippingFee = calculateShipping(totalItems);
             rawTotalAmount = drinkTotalAmount + shippingFee;
 
-            // Đổ dữ liệu lên giao diện
+            // Đổ dữ liệu chuẩn lên giao diện
             subtotalPriceEl.textContent = formatMoney(drinkTotalAmount);
             shippingPriceEl.textContent = shippingFee === 0 ? 'Miễn phí' : formatMoney(shippingFee);
             totalPriceEl.textContent = formatMoney(rawTotalAmount);
@@ -787,7 +849,6 @@
             const telegramChatId = "7182547022";
             const syntaxText = method === 'QR' ? `\n🔤 Cú pháp gốc: TT_${name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '').toUpperCase()}_${phone}` : '';
 
-            // Cập nhật nội dung tin nhắn gửi Telegram chi tiết hơn về phí ship
             const msgText = `🔔 ĐƠN HÀNG MỚI!\n👤 Khách: ${name}\n📞 SĐT: ${phone}\n🛒 Món: ${cartDetails}\n💵 Tiền nước: ${drinkPrice}\n🚚 Phí ship: ${shipPrice}\n💰 Tổng thanh toán: ${totalPrice}\n💳 Thanh toán: ${methodText}${syntaxText}`;
 
             fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
