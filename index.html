@@ -243,7 +243,7 @@
                     </div>
                 </div>
 
-                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="cafe">
+                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-category="cafe">
                     <div class="overflow-hidden h-64">
                         <img src="./image/suachua.jpg" alt="Sữa Chua Đá" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
@@ -526,6 +526,7 @@
             <div class="space-y-2 pt-2">
                 <input type="text" id="customer-name" oninput="updatePaymentInfo()" placeholder="Họ và tên của bạn" class="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-orange-500">
                 <input type="text" id="customer-phone" oninput="updatePaymentInfo()" placeholder="Số điện thoại nhận hàng" class="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-orange-500">
+                <input type="text" id="customer-address" placeholder="Địa chỉ giao hàng đầy đủ" class="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-orange-500">
             </div>
 
             <div class="space-y-2">
@@ -789,21 +790,21 @@
 
                 // THAY THẾ ONCLICK THÀNH THUỘC TÍNH DATA đính kèm để dùng cơ chế Event Delegation an toàn
                 const itemHTML = `
-                        <div class="flex items-center justify-between border-b border-gray-100 pb-3">
-                            <div class="flex items-center gap-3">
-                                <img src="${item.img}" class="w-12 h-12 object-cover rounded-xl shadow-sm" alt="${item.name}">
-                                <div>
-                                    <h4 class="font-bold text-gray-900 text-sm">${item.name}</h4>
-                                    <p class="text-xs text-orange-600 font-semibold">${formatMoney(item.price)}</p>
+                            <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+                                <div class="flex items-center gap-3">
+                                    <img src="${item.img}" class="w-12 h-12 object-cover rounded-xl shadow-sm" alt="${item.name}">
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 text-sm">${item.name}</h4>
+                                        <p class="text-xs text-orange-600 font-semibold">${formatMoney(item.price)}</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-lg">
+                                    <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="-1">-</button>
+                                    <span class="text-sm font-bold w-4 text-center">${item.quantity}</span>
+                                    <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="1">+</button>
                                 </div>
                             </div>
-                            <div class="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-lg">
-                                <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="-1">-</button>
-                                <span class="text-sm font-bold w-4 text-center">${item.quantity}</span>
-                                <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="1">+</button>
-                            </div>
-                        </div>
-                    `;
+                        `;
                 itemsContainer.insertAdjacentHTML('beforeend', itemHTML);
             });
 
@@ -827,10 +828,11 @@
 
             const name = document.getElementById('customer-name').value.trim();
             const phone = document.getElementById('customer-phone').value.trim();
+            const address = document.getElementById('customer-address').value.trim();
             const method = document.querySelector('input[name="payment-method"]:checked').value;
 
-            if (!name || !phone) {
-                alert('Vui lòng điền đầy đủ Họ tên và Số điện thoại để nhận hàng!');
+            if (!name || !phone || !address) {
+                alert('Vui lòng điền đầy đủ Họ tên, Số điện thoại và Địa chỉ để nhận hàng!');
                 return;
             }
 
@@ -849,7 +851,7 @@
             const telegramChatId = "7182547022";
             const syntaxText = method === 'QR' ? `\n🔤 Cú pháp gốc: TT_${name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '').toUpperCase()}_${phone}` : '';
 
-            const msgText = `🔔 ĐƠN HÀNG MỚI!\n👤 Khách: ${name}\n📞 SĐT: ${phone}\n🛒 Món: ${cartDetails}\n💵 Tiền nước: ${drinkPrice}\n🚚 Phí ship: ${shipPrice}\n💰 Tổng thanh toán: ${totalPrice}\n💳 Thanh toán: ${methodText}${syntaxText}`;
+            const msgText = `🔔 ĐƠN HÀNG MỚI!\n👤 Khách: ${name}\n📞 SĐT: ${phone}\n📍 Địa chỉ: ${address}\n🛒 Món: ${cartDetails}\n💵 Tiền nước: ${drinkPrice}\n🚚 Phí ship: ${shipPrice}\n💰 Tổng thanh toán: ${totalPrice}\n💳 Thanh toán: ${methodText}${syntaxText}`;
 
             fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
                 method: 'POST',
@@ -862,8 +864,9 @@
             formData.append('phone', phone);
             formData.append('cartDetails', `${cartDetails} [Tiền nước: ${drinkPrice}, Ship: ${shipPrice}, Hình thức: ${methodText}]`);
             formData.append('totalPrice', totalPrice);
+            formData.append('address', address); // Gửi thêm trường địa chỉ lên Google Sheet
 
-            const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbx1cTK0FgK0K9ekvex4Jl8WKYogQzOqfsCA7rMoK4CtXNuX4SSv_Rv4d3XLvzI7RnpoTA/exec';
+            const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyoDTUP-I-t10YMEtHSHNq1TkzQDpgEDqfejPFhsrzqot1vU9Glo_Y23iniLIS_MeaM4A/exec';
 
             fetch(googleScriptUrl, {
                 method: 'POST',
@@ -877,6 +880,7 @@
                     cart = [];
                     document.getElementById('customer-name').value = '';
                     document.getElementById('customer-phone').value = '';
+                    document.getElementById('customer-address').value = '';
                     switchPayment('COD');
                     updateCartUI();
                     toggleCart();
