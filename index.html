@@ -130,6 +130,7 @@
 
             <div class="flex flex-wrap justify-center gap-3 mb-12">
                 <button onclick="filterMenu('all')" class="tab-btn px-6 py-2.5 rounded-full font-bold transition shadow-sm bg-orange-500 text-white" id="tab-all">Tất Cả</button>
+                <button onclick="filterMenu('new-items')" class="tab-btn px-6 py-2.5 rounded-full font-bold transition shadow-sm bg-gray-100 text-gray-600 hover:bg-orange-100 hover:text-orange-600" id="tab-new-items">🔥 Món Mới</button>
                 <button onclick="filterMenu('special')" class="tab-btn px-6 py-2.5 rounded-full font-bold transition shadow-sm bg-gray-100 text-gray-600 hover:bg-orange-100 hover:text-orange-600" id="tab-special">✨ Đặc Biệt</button>
                 <button onclick="filterMenu('cafe')" class="tab-btn px-6 py-2.5 rounded-full font-bold transition shadow-sm bg-gray-100 text-gray-600 hover:bg-orange-100 hover:text-orange-600" id="tab-cafe">☕ Cà Phê</button>
                 <button onclick="filterMenu('juice')" class="tab-btn px-6 py-2.5 rounded-full font-bold transition shadow-sm bg-gray-100 text-gray-600 hover:bg-orange-100 hover:text-orange-600" id="tab-juice">🍹 Nước Ép</button>
@@ -138,6 +139,64 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="menu-grid">
+
+                <!-- SẢN PHẨM MỚI 1: Cacao latte trân châu đen (Size M: 20k, Size L: 25k) -->
+                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="new-items">
+                    <div class="overflow-hidden h-64 relative">
+                        <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-sm">Món Mới 🔥</span>
+                        <img src="./image/Cacao_latte.jpg" alt="Cacao latte trân châu đen" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-950">Cacao latte trân châu đen</h3>
+                            <span id="price-display-cacao" class="text-orange-600 font-bold text-lg">20.000đ</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4">Cacao Latte nguyên chất béo ngậy hòa quyện cùng những viên trân châu dai giòn sần sật, tạo nên hương vị ngọt ngào, đậm đà.</p>
+
+                        <!-- Ô chọn size Cacao latte trân châu đen -->
+                        <div class="flex items-center gap-2 mb-4">
+                            <label class="text-xs font-bold text-gray-500 uppercase">Chọn Size:</label>
+                            <select id="size-select-cacao" onchange="document.getElementById('price-display-cacao').textContent = this.value === '20000' ? '20.000đ' : '25.000đ'" class="bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-sm font-semibold text-gray-700 focus:outline-none focus:border-orange-500">
+                                <option value="20000">Size M (20.000đ)</option>
+                                <option value="25000">Size L (25.000đ)</option>
+                            </select>
+                        </div>
+
+                        <button onclick="addCacaoWithSize()" class="w-full bg-white text-orange-500 border border-orange-500 font-semibold py-2.5 rounded-xl hover:bg-orange-500 hover:text-white transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-plus text-sm"></i> Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SẢN PHẨM MỚI 2: Sữa tươi trân châu đường đen (MỚI CẬP NHẬT - Size M: 20k, Size L: 25k) -->
+                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="new-items">
+                    <div class="overflow-hidden h-64 relative">
+                        <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-sm">Món Mới 🔥</span>
+                        <img src="./image/suatuoi.jpg" alt="Sữa tươi trân châu đường đen" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-950">Sữa tươi trân châu đường đen</h3>
+                            <span id="price-display-suatuoi" class="text-orange-600 font-bold text-lg">20.000đ</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4">Hương vị trà đen truyền thống đậm đà, hậu vị chát nhẹ ngọt sâu, mang lại cảm giác tỉnh táo và thanh mát.</p>
+
+                        <!-- Ô chọn size Sữa tươi trân châu đường đen -->
+                        <div class="flex items-center gap-2 mb-4">
+                            <label class="text-xs font-bold text-gray-500 uppercase">Chọn Size:</label>
+                            <select id="size-select-suatuoi" onchange="document.getElementById('price-display-suatuoi').textContent = this.value === '20000' ? '20.000đ' : '25.000đ'" class="bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-sm font-semibold text-gray-700 focus:outline-none focus:border-orange-500">
+                                <option value="20000">Size M (20.000đ)</option>
+                                <option value="25000">Size L (25.000đ)</option>
+                            </select>
+                        </div>
+
+                        <button onclick="addSuatuoiWithSize()" class="w-full bg-white text-orange-500 border border-orange-500 font-semibold py-2.5 rounded-xl hover:bg-orange-500 hover:text-white transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-plus text-sm"></i> Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CÁC MÓN CŨ TRONG CODE ĐƯỢC GIỮ NGUYÊN BÊN DƯỚI -->
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="special">
                     <div class="overflow-hidden h-64 relative">
                         <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-sm">Món Đặc Biệt ⭐</span>
@@ -293,7 +352,7 @@
                             <h3 class="text-xl font-bold text-gray-950">Nước Mía Nguyên Chất</h3>
                             <span class="text-orange-600 font-bold text-lg">10.000đ</span>
                         </div>
-                        <p class="text-gray-500 text-sm mb-6">Nước mía không chỉ là thức uống giải khát, mà còn là hương vị tuổi thơ gắn liền với những buổi chiều rong chơi và tiếng máy ép quen thuộc.</p>
+                        <p class="text-gray-500 text-sm mb-6">Nước mía không chỉ là thức uống giải khát, mà còn là hương vị tuổi thơ gắn liền với tiếng máy ép quen thuộc.</p>
                         <button onclick="addToCart('Nước Mía Nguyên Chất', 10000, './image/nuocmia.jpg')" class="w-full bg-white text-orange-500 border border-orange-500 font-semibold py-2.5 rounded-xl hover:bg-orange-500 hover:text-white transition flex items-center justify-center gap-2">
                             <i class="fa-solid fa-plus text-sm"></i> Thêm vào giỏ
                         </button>
@@ -412,17 +471,17 @@
                     </div>
                 </div>
 
-                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="tea">
+                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-category="tea">
                     <div class="overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&q=80&w=600" alt="Trà tắc mật ong" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/tra_tac.jpg" alt=" Hồng trà sốt tắc" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-gray-950">Trà Tắc</h3>
+                            <h3 class="text-xl font-bold text-gray-950"> Hồng trà sốt tắc</h3>
                             <span class="text-orange-600 font-bold text-lg">15.000đ</span>
                         </div>
-                        <p class="text-gray-500 text-sm mb-6">Vị trà thơm nhẹ kết hợp cốt tắc tươi thanh ngọt, giải nhiệt cực tốt.</p>
-                        <button onclick="addToCart('Trà Tắc Mật Ong', 15000, './image/tra_tac.jpg')" class="w-full bg-white text-orange-500 border border-orange-500 font-semibold py-2.5 rounded-xl hover:bg-orange-500 hover:text-white transition flex items-center justify-center gap-2">
+                        <p class="text-gray-500 text-sm mb-6">Vị trà thơm nhẹ kết hợp cốt tắc tươi thanh ngọt, giải nhiệt cực tốt thanh mát cho cơ thể những ngày nắng nóng.</p>
+                        <button onclick="addToCart(' Hồng trà sốt tắc', 15000, './image/tra_tac.jpg')" class="w-full bg-white text-orange-500 border border-orange-500 font-semibold py-2.5 rounded-xl hover:bg-orange-500 hover:text-white transition flex items-center justify-center gap-2">
                             <i class="fa-solid fa-plus text-sm"></i> Thêm vào giỏ
                         </button>
                     </div>
@@ -597,14 +656,20 @@
             });
         });
 
+        // TỐI ƯU HÀM LỌC: Sử dụng class động thay vì tìm ID tĩnh để tránh lỗi khi thêm/bớt tab
         function filterMenu(category) {
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => {
                 btn.classList.remove('bg-orange-500', 'text-white');
                 btn.classList.add('bg-gray-100', 'text-gray-600');
             });
-            document.getElementById(`tab-${category}`).classList.remove('bg-gray-100', 'text-gray-600');
-            document.getElementById(`tab-${category}`).classList.add('bg-orange-500', 'text-white');
+
+            // Tìm nút được bấm bằng thuộc tính onclick có chứa tên category tương ứng
+            const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(`'${category}'`));
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-gray-100', 'text-gray-600');
+                activeBtn.classList.add('bg-orange-500', 'text-white');
+            }
 
             const items = document.querySelectorAll('.menu-item');
             items.forEach(item => {
@@ -698,6 +763,26 @@
             return amount.toLocaleString('vi-VN') + 'đ';
         }
 
+        // HÀM BỔ SUNG: Dành riêng cho món cacao trân châu để phân tách Size M và Size L trong giỏ hàng
+        function addCacaoWithSize() {
+            const selectEl = document.getElementById('size-select-cacao');
+            const price = parseInt(selectEl.value, 10);
+            const sizeText = price === 20000 ? 'Size M' : 'Size L';
+            const fullName = `Cacao latte trân châu đen (${sizeText})`;
+
+            addToCart(fullName, price, './image/Cacao_latte.jpg');
+        }
+
+        // HÀM BỔ SUNG MỚI: Dành riêng cho món Sữa tươi trân châu đường đen để phân tách Size M và Size L trong giỏ hàng
+        function addSuatuoiWithSize() {
+            const selectEl = document.getElementById('size-select-suatuoi');
+            const price = parseInt(selectEl.value, 10);
+            const sizeText = price === 20000 ? 'Size M' : 'Size L';
+            const fullName = `Sữa tươi trân châu đường đen(${sizeText})`;
+
+            addToCart(fullName, price, './image/suatuoi.jpg');
+        }
+
         function addToCart(name, price, img) {
             const existingItem = cart.find(item => item.name === name);
             if (existingItem) {
@@ -773,21 +858,21 @@
             cart.forEach(item => {
                 drinkTotalAmount += item.price * item.quantity;
                 const itemHTML = `
-                            <div class="flex items-center justify-between border-b border-gray-100 pb-3">
-                                <div class="flex items-center gap-3">
-                                    <img src="${item.img}" class="w-12 h-12 object-cover rounded-xl shadow-sm" alt="${item.name}">
-                                    <div>
-                                        <h4 class="font-bold text-gray-900 text-sm">${item.name}</h4>
-                                        <p class="text-xs text-orange-600 font-semibold">${formatMoney(item.price)}</p>
+                                <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+                                    <div class="flex items-center gap-3">
+                                        <img src="${item.img}" class="w-12 h-12 object-cover rounded-xl shadow-sm" alt="${item.name}">
+                                        <div>
+                                            <h4 class="font-bold text-gray-900 text-sm">${item.name}</h4>
+                                            <p class="text-xs text-orange-600 font-semibold">${formatMoney(item.price)}</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-lg">
+                                        <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="-1">-</button>
+                                        <span class="text-sm font-bold w-4 text-center">${item.quantity}</span>
+                                        <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="1">+</button>
                                     </div>
                                 </div>
-                                <div class="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-lg">
-                                    <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="-1">-</button>
-                                    <span class="text-sm font-bold w-4 text-center">${item.quantity}</span>
-                                    <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="1">+</button>
-                                </div>
-                            </div>
-                        `;
+                            `;
                 itemsContainer.insertAdjacentHTML('beforeend', itemHTML);
             });
 
