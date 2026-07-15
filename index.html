@@ -117,7 +117,7 @@
         </div>
         <div class="flex-1 relative">
             <div class="absolute inset-0 bg-orange-200 rounded-full filter blur-3xl opacity-40 -z-10 transform scale-90"></div>
-            <img src="./image/anhtesst.jpg" alt="Nước ép tươi ngon" class="w-full max-w-md mx-auto rounded-3xl shadow-2xl object-cover h-[450px]">
+            <img src="./image/anhtesst.jpg" alt="Nước ép tươi ngon" class="w-full h-full max-w-md mx-auto rounded-3xl shadow-2xl object-cover h-[450px]">
         </div>
     </section>
 
@@ -140,7 +140,25 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="menu-grid">
 
-                <!-- SẢN PHẨM MỚI 1: Cacao latte trân châu đen (Size M: 20k, Size L: 25k) -->
+                <!-- SẢN PHẨM MỚI 1: Trà Bí Đao (Nằm trong cả Món Mới 'new-items' và Trà Trái Cây 'tea') -->
+                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="new-items tea">
+                    <div class="overflow-hidden h-64 relative">
+                        <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-sm">Món Mới 🔥</span>
+                        <img src="./image/trabidao.jpg" alt="Trà Bí Đao" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-950">Trà Bí Đao</h3>
+                            <span class="text-orange-600 font-bold text-lg">15.000đ</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-6">Trà bí đao thanh ngọt tự nhiên, giải nhiệt cực tốt, mang đến cảm giác mát lành và dễ chịu suốt ngày dài.</p>
+                        <button onclick="addToCart('Trà Bí Đao', 15000, './image/trabidao.jpg')" class="w-full bg-white text-orange-500 border border-orange-500 font-semibold py-2.5 rounded-xl hover:bg-orange-500 hover:text-white transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-plus text-sm"></i> Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SẢN PHẨM MỚI 2: Cacao latte trân châu đen -->
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="new-items">
                     <div class="overflow-hidden h-64 relative">
                         <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-sm">Món Mới 🔥</span>
@@ -153,10 +171,9 @@
                         </div>
                         <p class="text-gray-500 text-sm mb-4">Cacao Latte nguyên chất béo ngậy hòa quyện cùng những viên trân châu dai giòn sần sật, tạo nên hương vị ngọt ngào, đậm đà.</p>
 
-                        <!-- Ô chọn size Cacao latte trân châu đen -->
                         <div class="flex items-center gap-2 mb-4">
                             <label class="text-xs font-bold text-gray-500 uppercase">Chọn Size:</label>
-                            <select id="size-select-cacao" onchange="document.getElementById('price-display-cacao').textContent = this.value === '20000' ? '20.000đ' : '25.000đ'" class="bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-sm font-semibold text-gray-700 focus:outline-none focus:border-orange-500">
+                            <select id="size-select-cacao" onchange="document.getElementById('price-display-cacao').textContent = (this.value === '20000' ? '20.000đ' : '25.000đ')" class="bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-sm font-semibold text-gray-700 focus:outline-none focus:border-orange-500">
                                 <option value="20000">Size M (20.000đ)</option>
                                 <option value="25000">Size L (25.000đ)</option>
                             </select>
@@ -168,7 +185,7 @@
                     </div>
                 </div>
 
-                <!-- SẢN PHẨM MỚI 2: Sữa tươi trân châu đường đen (MỚI CẬP NHẬT - Size M: 20k, Size L: 25k) -->
+                <!-- SẢN PHẨM MỚI 3: Sữa tươi trân châu đường đen -->
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="new-items">
                     <div class="overflow-hidden h-64 relative">
                         <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-sm">Món Mới 🔥</span>
@@ -179,12 +196,11 @@
                             <h3 class="text-xl font-bold text-gray-950">Sữa tươi trân châu đường đen</h3>
                             <span id="price-display-suatuoi" class="text-orange-600 font-bold text-lg">20.000đ</span>
                         </div>
-                        <p class="text-gray-500 text-sm mb-4">Hương vị trà đen truyền thống đậm đà, hậu vị chát nhẹ ngọt sâu, mang lại cảm giác tỉnh táo và thanh mát.</p>
+                        <p class="text-gray-500 text-sm mb-4">Sữa tươi béo ngọt hòa quyện cùng trân châu đường đen dai giòn, ngập tràn hương vị ngọt ngào khó cưỡng.</p>
 
-                        <!-- Ô chọn size Sữa tươi trân châu đường đen -->
                         <div class="flex items-center gap-2 mb-4">
                             <label class="text-xs font-bold text-gray-500 uppercase">Chọn Size:</label>
-                            <select id="size-select-suatuoi" onchange="document.getElementById('price-display-suatuoi').textContent = this.value === '20000' ? '20.000đ' : '25.000đ'" class="bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-sm font-semibold text-gray-700 focus:outline-none focus:border-orange-500">
+                            <select id="size-select-suatuoi" onchange="document.getElementById('price-display-suatuoi').textContent = (this.value === '20000' ? '20.000đ' : '25.000đ')" class="bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-sm font-semibold text-gray-700 focus:outline-none focus:border-orange-500">
                                 <option value="20000">Size M (20.000đ)</option>
                                 <option value="25000">Size L (25.000đ)</option>
                             </select>
@@ -196,7 +212,7 @@
                     </div>
                 </div>
 
-                <!-- CÁC MÓN CŨ TRONG CODE ĐƯỢC GIỮ NGUYÊN BÊN DƯỚI -->
+                <!-- CÁC MÓN KHÁC GIỮ NGUYÊN BÊN DƯỚI -->
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="special">
                     <div class="overflow-hidden h-64 relative">
                         <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-sm">Món Đặc Biệt ⭐</span>
@@ -231,7 +247,7 @@
                     </div>
                 </div>
 
-                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="cafe">
+                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-category="cafe">
                     <div class="overflow-hidden h-64">
                         <img src="./image/caphemuoi.jpg" alt="Cà phê Muối" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
@@ -247,7 +263,7 @@
                     </div>
                 </div>
 
-                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="cafe">
+                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-category="cafe">
                     <div class="overflow-hidden h-64">
                         <img src="./image/caphesuada.jpg" alt="Cà phê sữa đá" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
@@ -473,15 +489,15 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-category="tea">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/tra_tac.jpg" alt=" Hồng trà sốt tắc" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/tra_tac.jpg" alt="Hồng trà sốt tắc" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-gray-950"> Hồng trà sốt tắc</h3>
+                            <h3 class="text-xl font-bold text-gray-950">Hồng trà sốt tắc</h3>
                             <span class="text-orange-600 font-bold text-lg">15.000đ</span>
                         </div>
                         <p class="text-gray-500 text-sm mb-6">Vị trà thơm nhẹ kết hợp cốt tắc tươi thanh ngọt, giải nhiệt cực tốt thanh mát cho cơ thể những ngày nắng nóng.</p>
-                        <button onclick="addToCart(' Hồng trà sốt tắc', 15000, './image/tra_tac.jpg')" class="w-full bg-white text-orange-500 border border-orange-500 font-semibold py-2.5 rounded-xl hover:bg-orange-500 hover:text-white transition flex items-center justify-center gap-2">
+                        <button onclick="addToCart('Hồng trà sốt tắc', 15000, './image/tra_tac.jpg')" class="w-full bg-white text-orange-500 border border-orange-500 font-semibold py-2.5 rounded-xl hover:bg-orange-500 hover:text-white transition flex items-center justify-center gap-2">
                             <i class="fa-solid fa-plus text-sm"></i> Thêm vào giỏ
                         </button>
                     </div>
@@ -524,7 +540,7 @@
         <div id="shipping-notice" class="px-6 hidden">
             <div class="bg-orange-100 border border-orange-300 text-orange-700 text-xs px-4 py-2.5 rounded-xl font-bold flex items-center gap-2">
                 <i class="fa-solid fa-gift text-sm text-orange-600 animate-bounce"></i>
-                <span>Mua thêm 3 ly nữa để được Miễn Phí Ship bạn nhé!</span>
+                <span id="shipping-notice-text">Mua thêm vài ly nữa để được Miễn Phí Ship nhé!</span>
             </div>
         </div>
 
@@ -637,7 +653,6 @@
             const itemsContainer = document.getElementById('cart-items-container');
             const qrImg = document.getElementById('qr-code-img');
 
-            // Khi ảnh tải xong từ VietQR, khôi phục độ mờ để hiển thị rõ nét
             if (qrImg) {
                 qrImg.onload = function () {
                     qrImg.style.opacity = "1";
@@ -656,7 +671,7 @@
             });
         });
 
-        // TỐI ƯU HÀM LỌC: Sử dụng class động thay vì tìm ID tĩnh để tránh lỗi khi thêm/bớt tab
+        // TỐI ƯU HÀM LỌC: Chuyển đổi logic kiểm tra danh mục bằng phương thức includes() thay vì so khớp bằng (===)
         function filterMenu(category) {
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => {
@@ -664,7 +679,6 @@
                 btn.classList.add('bg-gray-100', 'text-gray-600');
             });
 
-            // Tìm nút được bấm bằng thuộc tính onclick có chứa tên category tương ứng
             const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(`'${category}'`));
             if (activeBtn) {
                 activeBtn.classList.remove('bg-gray-100', 'text-gray-600');
@@ -673,7 +687,10 @@
 
             const items = document.querySelectorAll('.menu-item');
             items.forEach(item => {
-                if (category === 'all' || item.getAttribute('data-category') === category) {
+                const itemCategories = item.getAttribute('data-category') || '';
+
+                // Sử dụng .includes() giúp một món thuộc nhiều danh mục ngăn cách bởi dấu cách đều có thể lọc ra
+                if (category === 'all' || itemCategories.split(' ').includes(category)) {
                     item.classList.remove('hidden');
                 } else {
                     item.classList.add('hidden');
@@ -681,7 +698,6 @@
             });
         }
 
-        // TỐI ƯU: NÂNG CẤP HIỆU ỨNG TRƯỢT NGĂN KÉO SMOOTH CHO SIDEBAR GIỎ HÀNG
         function toggleCart() {
             const sidebar = document.getElementById('cart-sidebar');
             const overlay = document.getElementById('cart-overlay');
@@ -710,7 +726,6 @@
                 labelQr.className = "border border-orange-500 bg-orange-50 p-3 rounded-xl flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-800 transition";
                 labelCod.className = "border border-gray-200 bg-white p-3 rounded-xl flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-800 transition";
 
-                // Mờ ảnh cũ đi (Tránh hiện tượng hiển thị sai lệch số tiền cũ khi chưa kịp load ảnh mới)
                 if (qrImg) qrImg.style.opacity = "0.3";
 
                 qrArea.classList.remove('hidden');
@@ -732,8 +747,12 @@
             let name = document.getElementById('customer-name').value.trim();
             let phone = document.getElementById('customer-phone').value.trim();
 
-            // Chuyển sang chữ hoa không dấu chuẩn định dạng ngân hàng
-            name = name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").replace(/\s+/g, '');
+            name = name.normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/đ/g, "d")
+                .replace(/Đ/g, "D")
+                .replace(/[^a-zA-Z0-9\s]/g, "")
+                .replace(/\s+/g, '');
             phone = phone.replace(/\s+/g, '');
 
             const codeName = name ? name : "KHACH";
@@ -749,7 +768,6 @@
             document.getElementById('qr-code-img').src = qrUrl;
         }
 
-        // TÍNH NĂNG CỰC PRO: CLICK LÀ TỰ COPY THÔNG TIN THANH TOÁN
         function copyToClipboard(text, successMsg) {
             if (!text || text.includes("...")) return;
             navigator.clipboard.writeText(text).then(() => {
@@ -763,7 +781,6 @@
             return amount.toLocaleString('vi-VN') + 'đ';
         }
 
-        // HÀM BỔ SUNG: Dành riêng cho món cacao trân châu để phân tách Size M và Size L trong giỏ hàng
         function addCacaoWithSize() {
             const selectEl = document.getElementById('size-select-cacao');
             const price = parseInt(selectEl.value, 10);
@@ -773,12 +790,11 @@
             addToCart(fullName, price, './image/Cacao_latte.jpg');
         }
 
-        // HÀM BỔ SUNG MỚI: Dành riêng cho món Sữa tươi trân châu đường đen để phân tách Size M và Size L trong giỏ hàng
         function addSuatuoiWithSize() {
             const selectEl = document.getElementById('size-select-suatuoi');
             const price = parseInt(selectEl.value, 10);
             const sizeText = price === 20000 ? 'Size M' : 'Size L';
-            const fullName = `Sữa tươi trân châu đường đen(${sizeText})`;
+            const fullName = `Sữa tươi trân châu đường đen (${sizeText})`;
 
             addToCart(fullName, price, './image/suatuoi.jpg');
         }
@@ -826,6 +842,7 @@
             const totalPriceEl = document.getElementById('cart-total-price');
             const emptyMsg = document.getElementById('empty-cart-msg');
             const shippingNotice = document.getElementById('shipping-notice');
+            const shippingNoticeText = document.getElementById('shipping-notice-text');
 
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             let drinkTotalAmount = 0;
@@ -849,7 +866,9 @@
             countBadge.textContent = totalItems;
             countBadge.classList.remove('opacity-0');
 
-            if (totalItems === 7) {
+            if (totalItems >= 7 && totalItems < 10) {
+                const neededItems = 10 - totalItems;
+                shippingNoticeText.textContent = `Mua thêm ${neededItems} ly nữa để được Miễn Phí Ship bạn nhé!`;
                 shippingNotice.classList.remove('hidden');
             } else {
                 shippingNotice.classList.add('hidden');
@@ -858,21 +877,21 @@
             cart.forEach(item => {
                 drinkTotalAmount += item.price * item.quantity;
                 const itemHTML = `
-                                <div class="flex items-center justify-between border-b border-gray-100 pb-3">
-                                    <div class="flex items-center gap-3">
-                                        <img src="${item.img}" class="w-12 h-12 object-cover rounded-xl shadow-sm" alt="${item.name}">
-                                        <div>
-                                            <h4 class="font-bold text-gray-900 text-sm">${item.name}</h4>
-                                            <p class="text-xs text-orange-600 font-semibold">${formatMoney(item.price)}</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-lg">
-                                        <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="-1">-</button>
-                                        <span class="text-sm font-bold w-4 text-center">${item.quantity}</span>
-                                        <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="1">+</button>
-                                    </div>
+                        <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+                            <div class="flex items-center gap-3">
+                                <img src="${item.img}" class="w-12 h-12 object-cover rounded-xl shadow-sm" alt="${item.name}">
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-sm">${item.name}</h4>
+                                    <p class="text-xs text-orange-600 font-semibold">${formatMoney(item.price)}</p>
                                 </div>
-                            `;
+                            </div>
+                            <div class="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-lg">
+                                <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="-1">-</button>
+                                <span class="text-sm font-bold w-4 text-center">${item.quantity}</span>
+                                <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="1">+</button>
+                            </div>
+                        </div>
+                    `;
                 itemsContainer.insertAdjacentHTML('beforeend', itemHTML);
             });
 
@@ -883,7 +902,6 @@
             shippingPriceEl.textContent = shippingFee === 0 ? 'Miễn phí' : formatMoney(shippingFee);
             totalPriceEl.textContent = formatMoney(rawTotalAmount);
 
-            // AUTO-RELOAD: Tự cập nhật lại mã QR theo thời gian thực khi tăng giảm số lượng cốc
             const currentMethod = document.querySelector('input[name="payment-method"]:checked');
             if (currentMethod && currentMethod.value === 'QR') {
                 const qrImg = document.getElementById('qr-code-img');
@@ -903,7 +921,6 @@
             const address = document.getElementById('customer-address').value.trim();
             const method = document.querySelector('input[name="payment-method"]:checked').value;
 
-            // KIỂM TRA ĐỊA CHỈ TRƯỚC KHI CHO GỬI ĐƠN
             if (!name || !phone || !address) {
                 alert('Vui lòng điền đầy đủ Họ tên, Số điện thoại và Địa chỉ để nhận hàng!');
                 return;
@@ -922,9 +939,10 @@
 
             const telegramToken = "8900419046:AAHD6RCY_2gHnOv3o5Ohm1n6WlDa2_40urg";
             const telegramChatId = "7182547022";
-            const syntaxText = method === 'QR' ? `\n🔤 Cú pháp gốc: TT_${name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '').toUpperCase()}_${phone}` : '';
 
-            // TELEGRAM MESSAGE: Đã thêm hiển thị trường địa chỉ rõ ràng
+            const cleanName = name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").replace(/[^a-zA-Z0-9\s]/g, "").replace(/\s+/g, '').toUpperCase();
+            const syntaxText = method === 'QR' ? `\n🔤 Cú pháp gốc: TT_${cleanName}_${phone}` : '';
+
             const msgText = `🔔 ĐƠN HÀNG MỚI!\n👤 Khách: ${name}\n📞 SĐT: ${phone}\n📍 Địa chỉ: ${address}\n🛒 Món: ${cartDetails}\n💵 Tiền nước: ${drinkPrice}\n🚚 Phí ship: ${shipPrice}\n💰 Tổng thanh toán: ${totalPrice}\n💳 Thanh toán: ${methodText}${syntaxText}`;
 
             fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
@@ -938,7 +956,7 @@
             formData.append('phone', phone);
             formData.append('cartDetails', `${cartDetails} [Tiền nước: ${drinkPrice}, Ship: ${shipPrice}, Hình thức: ${methodText}]`);
             formData.append('totalPrice', totalPrice);
-            formData.append('address', address); // Đẩy cột địa chỉ lên Google Sheets
+            formData.append('address', address);
 
             const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyoDTUP-I-t10YMEtHSHNq1TkzQDpgEDqfejPFhsrzqot1vU9Glo_Y23iniLIS_MeaM4A/exec';
 
