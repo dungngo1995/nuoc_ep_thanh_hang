@@ -32,28 +32,33 @@
             animation: zaloRung 3s infinite ease-in-out; /* Hiệu ứng rung lặp lại mỗi 3 giây */
         }
 
-        /* Hiệu ứng phóng to nhẹ khi di chuột vào (Hover) */
-        .zalo-float:hover {
-            transform: scale(1.15) rotate(5deg);
-        }
+            /* Hiệu ứng phóng to nhẹ khi di chuột vào (Hover) */
+            .zalo-float:hover {
+                transform: scale(1.15) rotate(5deg);
+            }
 
         /* Định nghĩa hiệu ứng rung lắc nhẹ thu hút khách hàng */
         @keyframes zaloRung {
             0%, 100% {
                 transform: scale(1);
             }
+
             90% {
                 transform: scale(1) translate(0, 0);
             }
+
             92% {
                 transform: scale(1.05) translate(-2px, 2px);
             }
+
             94% {
                 transform: scale(1.05) translate(2px, -2px);
             }
+
             96% {
                 transform: scale(1.05) translate(-2px, -2px);
             }
+
             98% {
                 transform: scale(1.05) translate(2px, 2px);
             }
@@ -84,7 +89,7 @@
                 <a href="#menu" class="hover:text-orange-500 transition">Menu</a>
             </nav>
             <div class="flex items-center gap-4">
-                <button onclick="toggleCart()" class="relative p-2 text-gray-600 hover:text-orange-500 focus:outline-none">
+                <button onclick="toggleCart()" class="relative p-2 text-gray-600 hover:text-orange-500 focus:outline-none" aria-label="Xem giỏ hàng">
                     <i class="fa-solid fa-basket-shopping text-xl"></i>
                     <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold opacity-0 transition-opacity">0</span>
                 </button>
@@ -112,7 +117,7 @@
         </div>
         <div class="flex-1 relative">
             <div class="absolute inset-0 bg-orange-200 rounded-full filter blur-3xl opacity-40 -z-10 transform scale-90"></div>
-            <img src="./image/anhtesst.jpg" alt="Nước ép tươi ngon" class="w-full h-full max-w-md mx-auto rounded-3xl shadow-2xl object-cover h-[450px]">
+            <img src="./image/anhtesst.jpg" onerror="this.src='https://placehold.co/600x450/fb923c/ffffff?text=Nuoc+Ep+Nha+Thoc'" alt="Nước ép tươi ngon" class="w-full h-full max-w-md mx-auto rounded-3xl shadow-2xl object-cover h-[450px]">
         </div>
     </section>
 
@@ -135,11 +140,29 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="menu-grid">
 
+                <!-- SẢN PHẨM MỚI: Nước Ép Táo (Đứng trước Trà Bí Đao) -->
+                <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="new-items juice">
+                    <div class="overflow-hidden h-64 relative">
+                        <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-sm">Món Mới 🔥</span>
+                        <img src="./image/tao.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Nuoc+Ep+Tao'" alt="Nước Ép Táo" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-950">Nước Ép Táo</h3>
+                            <span class="text-orange-600 font-bold text-lg">15.000đ</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-6">Táo tươi giòn ngọt tự nhiên, ép nguyên chất giàu vitamin và chất chống oxy hóa, mang lại cảm giác thanh mát, sảng khoái.</p>
+                        <button onclick="addToCart('Nước Ép Táo', 15000, './image/tao.jpg')" class="w-full bg-white text-orange-500 border border-orange-500 font-semibold py-2.5 rounded-xl hover:bg-orange-500 hover:text-white transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-plus text-sm"></i> Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+
                 <!-- SẢN PHẨM MỚI: Trà Bí Đao -->
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="new-items tea">
                     <div class="overflow-hidden h-64 relative">
                         <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-sm">Món Mới 🔥</span>
-                        <img src="./image/trabidao.jpg" alt="Trà Bí Đao" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/trabidao.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Tra+Bi+Dao'" alt="Trà Bí Đao" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -157,7 +180,7 @@
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="special">
                     <div class="overflow-hidden h-64 relative">
                         <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-sm">Món Đặc Biệt ⭐</span>
-                        <img src="./image/suaduasuongsao.jpg" alt="Sữa Dừa Sương Sáo" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/suaduasuongsao.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Sua+Dua+Suong+Sao'" alt="Sữa Dừa Sương Sáo" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -174,7 +197,7 @@
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="special">
                     <div class="overflow-hidden h-64 relative">
                         <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-sm">Món Đặc Biệt ⭐</span>
-                        <img src="./image/caphesuaduasuongsao.jpg" alt="Cà Phê Sữa Dừa Sương Sáo" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/caphesuaduasuongsao.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=CF+Sua+Dua'" alt="Cà Phê Sữa Dừa Sương Sáo" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -190,7 +213,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-category="cafe">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/caphemuoi.jpg" alt="Cà phê Muối" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/caphemuoi.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Ca+Phe+Muoi'" alt="Cà phê Muối" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -206,7 +229,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-category="cafe">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/caphesuada.jpg" alt="Cà phê sữa đá" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/caphesuada.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Ca+Phe+Sua+Da'" alt="Cà phê sữa đá" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -222,7 +245,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-category="cafe">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/caphesuasaigon.jpg" alt="Cà Phê Sữa Sài Gòn" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/caphesuasaigon.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=CF+Sua+Sai+Gon'" alt="Cà Phê Sữa Sài Gòn" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -238,7 +261,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-category="cafe">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/bacxiu.jpg" alt="Bạc Xỉu Đá" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/bacxiu.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Bac+Xiu+Da'" alt="Bạc Xỉu Đá" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -254,7 +277,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-category="cafe">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/suachua.jpg" alt="Sữa Chua Đá" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/suachua.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Sua+Chua+Da'" alt="Sữa Chua Đá" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -270,7 +293,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="juice">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/rauma.jpg" alt="Nước Rau Má Đậu Xanh" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/rauma.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Rau+Ma+Dau+Xanh'" alt="Nước Rau Má Đậu Xanh" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -286,7 +309,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="juice">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/nuoccam.jpg" alt="Nước Cam nguyên chất" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/nuoccam.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Nuoc+Cam'" alt="Nước Cam nguyên chất" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -302,7 +325,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="juice">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/nuocmia.jpg" alt="Nước Mía Nguyên Chất" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/nuocmia.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Nuoc+Mia'" alt="Nước Mía Nguyên Chất" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -318,7 +341,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="juice">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/nuocduahau.jpg" alt="Nước ép dưa hấu" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/nuocduahau.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Nuoc+Ep+Dua+Hau'" alt="Nước ép dưa hấu" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -334,7 +357,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="juice">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/nuocdua.jpg" alt="Nước Ép Dứa" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/nuocdua.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Nuoc+Ep+Dua'" alt="Nước Ép Dứa" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -350,7 +373,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="juice">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/nuocchanhday.jpg" alt="Nước Chanh dây" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/nuocchanhday.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Nuoc+Chanh+Day'" alt="Nước Chanh dây" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -366,7 +389,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="juice">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/nuocarot.jpg" alt="Nước Ép Cà Rốt" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/nuocarot.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Nuoc+Ep+Ca+Rot'" alt="Nước Ép Cà Rốt" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -382,7 +405,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="juice">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/nuoccachua.jpg" alt="Nước Ép Cà Chua" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/nuoccachua.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Nuoc+Ep+Ca+Chua'" alt="Nước Ép Cà Chua" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -398,7 +421,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="juice">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/nuoccoc.jpg" alt="Nước Ép Cóc" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/nuoccoc.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Nuoc+Ep+Coc'" alt="Nước Ép Cóc" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -414,7 +437,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition group duration-300" data-category="juice">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/nuocoi.jpg" alt="Nước Ép Ổi" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/nuocoi.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Nuoc+Ep+Oi'" alt="Nước Ép Ổi" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -430,7 +453,7 @@
 
                 <div class="menu-item bg-orange-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-category="tea">
                     <div class="overflow-hidden h-64">
-                        <img src="./image/tra_tac.jpg" alt="Hồng trà sốt tắc" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="./image/tra_tac.jpg" onerror="this.src='https://placehold.co/400x300/f97316/ffffff?text=Tra+Tac'" alt="Hồng trà sốt tắc" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -447,12 +470,13 @@
         </div>
     </section>
 
+    <!-- Giỏ hàng Sidebar -->
     <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full sm:w-[450px] bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col overflow-y-auto">
         <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-orange-50">
             <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2">
                 <i class="fa-solid fa-basket-shopping text-orange-500"></i> Giỏ hàng của bạn
             </h3>
-            <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-600 text-2xl focus:outline-none">
+            <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-600 text-2xl focus:outline-none" aria-label="Đóng giỏ hàng">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
@@ -549,6 +573,10 @@
         </div>
     </div>
 
+    <!-- Nút thông báo Toast nổi -->
+    <div id="toast-msg" class="fixed top-5 left-1/2 -translate-x-1/2 bg-gray-900/90 backdrop-blur text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-2xl z-[10000] opacity-0 pointer-events-none transition-all duration-300">
+    </div>
+
     <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-black opacity-40 z-40 hidden"></div>
 
     <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
@@ -576,8 +604,8 @@
                     <span>0898.222.465 (Zalo)</span>
                 </p>
                 <div class="flex space-x-3 mt-4">
-                    <a href="#" class="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 hover:text-white transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
-                    <a href="#" class="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 hover:text-white transition"><i class="fa-brands fa-instagram text-sm"></i></a>
+                    <a href="#" class="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 hover:text-white transition" aria-label="Facebook"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                    <a href="#" class="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 hover:text-white transition" aria-label="Instagram"><i class="fa-brands fa-instagram text-sm"></i></a>
                 </div>
             </div>
         </div>
@@ -587,325 +615,338 @@
     </footer>
 
     <script>
-        let cart = [];
-        let rawTotalAmount = 0; // Tổng thanh toán gồm phí ship dùng cho mã QR
+                let cart = [];
+                let rawTotalAmount = 0; // Tổng thanh toán gồm phí ship dùng cho mã QR
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const itemsContainer = document.getElementById('cart-items-container');
-            const qrImg = document.getElementById('qr-code-img');
+                document.addEventListener("DOMContentLoaded", function () {
+                    const itemsContainer = document.getElementById('cart-items-container');
+                    const qrImg = document.getElementById('qr-code-img');
 
-            if (qrImg) {
-                qrImg.onload = function () {
-                    qrImg.style.opacity = "1";
-                };
-            }
+                    if (qrImg) {
+                        qrImg.onload = function () {
+                            qrImg.style.opacity = "1";
+                        };
+                    }
 
-            itemsContainer.addEventListener('click', function (event) {
-                const target = event.target;
-                if (target.classList.contains('quantity-btn')) {
-                    const name = target.getAttribute('data-name');
-                    const delta = parseInt(target.getAttribute('data-delta'), 10);
-                    if (name && !isNaN(delta)) {
-                        changeQuantity(name, delta);
+                    itemsContainer.addEventListener('click', function (event) {
+                        const target = event.target;
+                        if (target.classList.contains('quantity-btn')) {
+                            const name = target.getAttribute('data-name');
+                            const delta = parseInt(target.getAttribute('data-delta'), 10);
+                            if (name && !isNaN(delta)) {
+                                changeQuantity(name, delta);
+                            }
+                        }
+                    });
+                });
+
+                function showToast(message) {
+                    const toast = document.getElementById('toast-msg');
+                    toast.textContent = message;
+                    toast.classList.remove('opacity-0', 'pointer-events-none');
+                    toast.classList.add('opacity-100');
+                    setTimeout(() => {
+                        toast.classList.remove('opacity-100');
+                        toast.classList.add('opacity-0', 'pointer-events-none');
+                    }, 3000);
+                }
+
+                function filterMenu(category) {
+                    const buttons = document.querySelectorAll('.tab-btn');
+                    buttons.forEach(btn => {
+                        btn.classList.remove('bg-orange-500', 'text-white');
+                        btn.classList.add('bg-gray-100', 'text-gray-600');
+                    });
+
+                    const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(`'${category}'`));
+                    if (activeBtn) {
+                        activeBtn.classList.remove('bg-gray-100', 'text-gray-600');
+                        activeBtn.classList.add('bg-orange-500', 'text-white');
+                    }
+
+                    const items = document.querySelectorAll('.menu-item');
+                    items.forEach(item => {
+                        const itemCategories = item.getAttribute('data-category') || '';
+
+                        if (category === 'all' || itemCategories.split(' ').includes(category)) {
+                            item.classList.remove('hidden');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                }
+
+                function toggleCart() {
+                    const sidebar = document.getElementById('cart-sidebar');
+                    const overlay = document.getElementById('cart-overlay');
+
+                    if (sidebar.classList.contains('translate-x-full')) {
+                        sidebar.classList.remove('translate-x-full');
+                        overlay.classList.remove('hidden');
+                    } else {
+                        sidebar.classList.add('translate-x-full');
+                        overlay.classList.add('hidden');
                     }
                 }
-            });
-        });
 
-        function filterMenu(category) {
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-orange-500', 'text-white');
-                btn.classList.add('bg-gray-100', 'text-gray-600');
-            });
+                function switchPayment(method) {
+                    const labelCod = document.getElementById('label-cod');
+                    const labelQr = document.getElementById('label-qr');
+                    const qrArea = document.getElementById('qr-payment-area');
+                    const sidebar = document.getElementById('cart-sidebar');
+                    const qrImg = document.getElementById('qr-code-img');
 
-            const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(`'${category}'`));
-            if (activeBtn) {
-                activeBtn.classList.remove('bg-gray-100', 'text-gray-600');
-                activeBtn.classList.add('bg-orange-500', 'text-white');
-            }
+                    if (method === 'COD') {
+                        labelCod.className = "border border-orange-500 bg-orange-50 p-3 rounded-xl flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-800 transition";
+                        labelQr.className = "border border-gray-200 bg-white p-3 rounded-xl flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-800 transition";
+                        qrArea.classList.add('hidden');
+                    } else {
+                        labelQr.className = "border border-orange-500 bg-orange-50 p-3 rounded-xl flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-800 transition";
+                        labelCod.className = "border border-gray-200 bg-white p-3 rounded-xl flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-800 transition";
 
-            const items = document.querySelectorAll('.menu-item');
-            items.forEach(item => {
-                const itemCategories = item.getAttribute('data-category') || '';
+                        if (qrImg) qrImg.style.opacity = "0.3";
 
-                if (category === 'all' || itemCategories.split(' ').includes(category)) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
+                        qrArea.classList.remove('hidden');
+                        updatePaymentInfo();
+
+                        setTimeout(() => {
+                            sidebar.scrollTo({
+                                top: sidebar.scrollHeight,
+                                behavior: 'smooth'
+                            });
+                        }, 50);
+                    }
                 }
-            });
-        }
 
-        function toggleCart() {
-            const sidebar = document.getElementById('cart-sidebar');
-            const overlay = document.getElementById('cart-overlay');
+                function updatePaymentInfo() {
+                    const paymentRadio = document.querySelector('input[name="payment-method"]:checked');
+                    if (!paymentRadio || paymentRadio.value !== 'QR') return;
 
-            if (sidebar.classList.contains('translate-x-full')) {
-                sidebar.classList.remove('translate-x-full');
-                overlay.classList.remove('hidden');
-            } else {
-                sidebar.classList.add('translate-x-full');
-                overlay.classList.add('hidden');
-            }
-        }
+                    let name = document.getElementById('customer-name').value.trim();
+                    let phone = document.getElementById('customer-phone').value.trim();
 
-        function switchPayment(method) {
-            const labelCod = document.getElementById('label-cod');
-            const labelQr = document.getElementById('label-qr');
-            const qrArea = document.getElementById('qr-payment-area');
-            const sidebar = document.getElementById('cart-sidebar');
-            const qrImg = document.getElementById('qr-code-img');
+                    name = name.normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "")
+                        .replace(/đ/g, "d")
+                        .replace(/Đ/g, "D")
+                        .replace(/[^a-zA-Z0-9\s]/g, "")
+                        .replace(/\s+/g, '');
+                    phone = phone.replace(/\s+/g, '');
 
-            if (method === 'COD') {
-                labelCod.className = "border border-orange-500 bg-orange-50 p-3 rounded-xl flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-800 transition";
-                labelQr.className = "border border-gray-200 bg-white p-3 rounded-xl flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-800 transition";
-                qrArea.classList.add('hidden');
-            } else {
-                labelQr.className = "border border-orange-500 bg-orange-50 p-3 rounded-xl flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-800 transition";
-                labelCod.className = "border border-gray-200 bg-white p-3 rounded-xl flex items-center gap-2 cursor-pointer text-xs font-bold text-gray-800 transition";
+                    const codeName = name ? name : "KHACH";
+                    const codePhone = phone ? phone : "000";
+                    const syntax = `TT_${codeName}_${codePhone}`.toUpperCase();
 
-                if (qrImg) qrImg.style.opacity = "0.3";
+                    document.getElementById('qr-content-text').textContent = syntax;
 
-                qrArea.classList.remove('hidden');
-                updatePaymentInfo();
+                    const BANK_ID = "VCB";
+                    const ACCOUNT_NO = "0041000341822";
 
-                setTimeout(() => {
-                    sidebar.scrollTo({
-                        top: sidebar.scrollHeight,
-                        behavior: 'smooth'
-                    });
-                }, 50);
-            }
-        }
+                    const qrUrl = `https://img.vietqr.io/image/${BANK_ID}-${ACCOUNT_NO}-compact2.png?amount=${rawTotalAmount}&addInfo=${encodeURIComponent(syntax)}`;
+                    document.getElementById('qr-code-img').src = qrUrl;
+                }
 
-        function updatePaymentInfo() {
-            const currentMethod = document.querySelector('input[name="payment-method"]:checked').value;
-            if (currentMethod !== 'QR') return;
+                function copyToClipboard(text, successMsg) {
+                    if (!text || text.includes("...")) return;
+                    const tempInput = document.createElement("input");
+                    tempInput.value = text;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(tempInput);
+                    showToast(successMsg);
+                }
 
-            let name = document.getElementById('customer-name').value.trim();
-            let phone = document.getElementById('customer-phone').value.trim();
+                function formatMoney(amount) {
+                    return amount.toLocaleString('vi-VN') + 'đ';
+                }
 
-            name = name.normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")
-                .replace(/đ/g, "d")
-                .replace(/Đ/g, "D")
-                .replace(/[^a-zA-Z0-9\s]/g, "")
-                .replace(/\s+/g, '');
-            phone = phone.replace(/\s+/g, '');
-
-            const codeName = name ? name : "KHACH";
-            const codePhone = phone ? phone : "000";
-            const syntax = `TT_${codeName}_${codePhone}`.toUpperCase();
-
-            document.getElementById('qr-content-text').textContent = syntax;
-
-            const BANK_ID = "VCB";
-            const ACCOUNT_NO = "0041000341822";
-
-            const qrUrl = `https://img.vietqr.io/image/${BANK_ID}-${ACCOUNT_NO}-compact2.png?amount=${rawTotalAmount}&addInfo=${encodeURIComponent(syntax)}`;
-            document.getElementById('qr-code-img').src = qrUrl;
-        }
-
-        function copyToClipboard(text, successMsg) {
-            if (!text || text.includes("...")) return;
-            navigator.clipboard.writeText(text).then(() => {
-                alert(successMsg);
-            }).catch(err => {
-                console.error("Lỗi không thể sao chép: ", err);
-            });
-        }
-
-        function formatMoney(amount) {
-            return amount.toLocaleString('vi-VN') + 'đ';
-        }
-
-        function addToCart(name, price, img) {
-            const existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ name, price, img, quantity: 1 });
-            }
-            updateCartUI();
-            const sidebar = document.getElementById('cart-sidebar');
-            if (sidebar.classList.contains('translate-x-full')) {
-                toggleCart();
-            }
-        }
-
-        function changeQuantity(name, delta) {
-            const itemIndex = cart.findIndex(item => item.name === name);
-            if (itemIndex === -1) return;
-
-            cart[itemIndex].quantity += delta;
-
-            if (cart[itemIndex].quantity <= 0) {
-                cart.splice(itemIndex, 1);
-            }
-            updateCartUI();
-        }
-
-        function calculateShipping(totalItems) {
-            if (totalItems <= 0) return 0;
-            if (totalItems >= 10) return 0;
-            if (totalItems >= 7) return 10000;
-            if (totalItems >= 4) return 15000;
-            if (totalItems >= 1) return 25000;
-            return 0;
-        }
-
-        function updateCartUI() {
-            const countBadge = document.getElementById('cart-count');
-            const itemsContainer = document.getElementById('cart-items-container');
-            const subtotalPriceEl = document.getElementById('cart-subtotal-price');
-            const shippingPriceEl = document.getElementById('cart-shipping-price');
-            const totalPriceEl = document.getElementById('cart-total-price');
-            const emptyMsg = document.getElementById('empty-cart-msg');
-            const shippingNotice = document.getElementById('shipping-notice');
-            const shippingNoticeText = document.getElementById('shipping-notice-text');
-
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            let drinkTotalAmount = 0;
-
-            itemsContainer.innerHTML = '';
-
-            if (cart.length === 0 || totalItems <= 0) {
-                countBadge.classList.add('opacity-0');
-                shippingNotice.classList.add('hidden');
-                itemsContainer.appendChild(emptyMsg);
-
-                subtotalPriceEl.textContent = '0đ';
-                shippingPriceEl.textContent = '0đ';
-                totalPriceEl.textContent = '0đ';
-                rawTotalAmount = 0;
-
-                updatePaymentInfo();
-                return;
-            }
-
-            countBadge.textContent = totalItems;
-            countBadge.classList.remove('opacity-0');
-
-            if (totalItems >= 7 && totalItems < 10) {
-                const neededItems = 10 - totalItems;
-                shippingNoticeText.textContent = `Mua thêm ${neededItems} ly nữa để được Miễn Phí Ship bạn nhé!`;
-                shippingNotice.classList.remove('hidden');
-            } else {
-                shippingNotice.classList.add('hidden');
-            }
-
-            cart.forEach(item => {
-                drinkTotalAmount += item.price * item.quantity;
-                const itemHTML = `
-                    <div class="flex items-center justify-between border-b border-gray-100 pb-3">
-                        <div class="flex items-center gap-3">
-                            <img src="${item.img}" class="w-12 h-12 object-cover rounded-xl shadow-sm" alt="${item.name}">
-                            <div>
-                                <h4 class="font-bold text-gray-900 text-sm">${item.name}</h4>
-                                <p class="text-xs text-orange-600 font-semibold">${formatMoney(item.price)}</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-lg">
-                            <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="-1">-</button>
-                            <span class="text-sm font-bold w-4 text-center">${item.quantity}</span>
-                            <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="1">+</button>
-                        </div>
-                    </div>
-                `;
-                itemsContainer.insertAdjacentHTML('beforeend', itemHTML);
-            });
-
-            const shippingFee = calculateShipping(totalItems);
-            rawTotalAmount = drinkTotalAmount + shippingFee;
-
-            subtotalPriceEl.textContent = formatMoney(drinkTotalAmount);
-            shippingPriceEl.textContent = shippingFee === 0 ? 'Miễn phí' : formatMoney(shippingFee);
-            totalPriceEl.textContent = formatMoney(rawTotalAmount);
-
-            const currentMethod = document.querySelector('input[name="payment-method"]:checked');
-            if (currentMethod && currentMethod.value === 'QR') {
-                const qrImg = document.getElementById('qr-code-img');
-                if (qrImg) qrImg.style.opacity = "0.3";
-                updatePaymentInfo();
-            }
-        }
-
-        function checkout() {
-            if (cart.length === 0) {
-                alert('Giỏ hàng của bạn đang trống! Hãy chọn món trước khi thanh toán.');
-                return;
-            }
-
-            const name = document.getElementById('customer-name').value.trim();
-            const phone = document.getElementById('customer-phone').value.trim();
-            const address = document.getElementById('customer-address').value.trim();
-            const method = document.querySelector('input[name="payment-method"]:checked').value;
-
-            if (!name || !phone || !address) {
-                alert('Vui lòng điền đầy đủ Họ tên, Số điện thoại và Địa chỉ để nhận hàng!');
-                return;
-            }
-
-            let cartDetails = cart.map(item => `${item.name} (SL: ${item.quantity})`).join(', ');
-            let totalPrice = document.getElementById('cart-total-price').textContent;
-            let drinkPrice = document.getElementById('cart-subtotal-price').textContent;
-            let shipPrice = document.getElementById('cart-shipping-price').textContent;
-            const methodText = method === 'COD' ? "Tiền mặt (COD)" : "Chuyển khoản QR";
-
-            const checkoutBtn = document.querySelector('button[onclick="checkout()"]');
-            const originalText = checkoutBtn.textContent;
-            checkoutBtn.textContent = "ĐANG GỬI ĐƠN HÀNG...";
-            checkoutBtn.disabled = true;
-
-            const telegramToken = "8900419046:AAHD6RCY_2gHnOv3o5Ohm1n6WlDa2_40urg";
-            const telegramChatId = "7182547022";
-
-            const cleanName = name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").replace(/[^a-zA-Z0-9\s]/g, "").replace(/\s+/g, '').toUpperCase();
-            const syntaxText = method === 'QR' ? `\n🔤 Cú pháp gốc: TT_${cleanName}_${phone}` : '';
-
-            const msgText = `🔔 ĐƠN HÀNG MỚI!\n👤 Khách: ${name}\n📞 SĐT: ${phone}\n📍 Địa chỉ: ${address}\n🛒 Món: ${cartDetails}\n💵 Tiền nước: ${drinkPrice}\n🚚 Phí ship: ${shipPrice}\n💰 Tổng thanh toán: ${totalPrice}\n💳 Thanh toán: ${methodText}${syntaxText}`;
-
-            fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: telegramChatId, text: msgText })
-            }).catch(err => console.error("Lỗi gửi Telegram:", err));
-
-            const formData = new URLSearchParams();
-            formData.append('name', name);
-            formData.append('phone', phone);
-            formData.append('cartDetails', `${cartDetails} [Tiền nước: ${drinkPrice}, Ship: ${shipPrice}, Hình thức: ${methodText}]`);
-            formData.append('totalPrice', totalPrice);
-            formData.append('address', address);
-
-            const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyoDTUP-I-t10YMEtHSHNq1TkzQDpgEDqfejPFhsrzqot1vU9Glo_Y23iniLIS_MeaM4A/exec';
-
-            fetch(googleScriptUrl, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: formData.toString()
-            })
-                .then(() => {
-                    alert(`🎉 Đặt hàng thành công!\nĐơn hàng thanh toán bằng [${methodText}] đã được ghi nhận. Cửa hàng sẽ liên hệ bạn ngay qua số ${phone}!`);
-
-                    cart = [];
-                    document.getElementById('customer-name').value = '';
-                    document.getElementById('customer-phone').value = '';
-                    document.getElementById('customer-address').value = '';
-                    switchPayment('COD');
+                function addToCart(name, price, img) {
+                    const existingItem = cart.find(item => item.name === name);
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({ name, price, img, quantity: 1 });
+                    }
                     updateCartUI();
-                    toggleCart();
-                })
-                .finally(() => {
-                    checkoutBtn.textContent = originalText;
-                    checkoutBtn.disabled = false;
-                });
-        }
+                    const sidebar = document.getElementById('cart-sidebar');
+                    if (sidebar.classList.contains('translate-x-full')) {
+                        toggleCart();
+                    }
+                }
+
+                function changeQuantity(name, delta) {
+                    const itemIndex = cart.findIndex(item => item.name === name);
+                    if (itemIndex === -1) return;
+
+                    cart[itemIndex].quantity += delta;
+
+                    if (cart[itemIndex].quantity <= 0) {
+                        cart.splice(itemIndex, 1);
+                    }
+                    updateCartUI();
+                }
+
+                function calculateShipping(totalItems) {
+                    if (totalItems <= 0) return 0;
+                    if (totalItems >= 10) return 0;
+                    if (totalItems >= 7) return 10000;
+                    if (totalItems >= 4) return 15000;
+                    if (totalItems >= 1) return 25000;
+                    return 0;
+                }
+
+                function updateCartUI() {
+                    const countBadge = document.getElementById('cart-count');
+                    const itemsContainer = document.getElementById('cart-items-container');
+                    const subtotalPriceEl = document.getElementById('cart-subtotal-price');
+                    const shippingPriceEl = document.getElementById('cart-shipping-price');
+                    const totalPriceEl = document.getElementById('cart-total-price');
+                    const emptyMsg = document.getElementById('empty-cart-msg');
+                    const shippingNotice = document.getElementById('shipping-notice');
+                    const shippingNoticeText = document.getElementById('shipping-notice-text');
+
+                    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                    let drinkTotalAmount = 0;
+
+                    itemsContainer.innerHTML = '';
+
+                    if (cart.length === 0 || totalItems <= 0) {
+                        countBadge.classList.add('opacity-0');
+                        shippingNotice.classList.add('hidden');
+                        itemsContainer.appendChild(emptyMsg);
+
+                        subtotalPriceEl.textContent = '0đ';
+                        shippingPriceEl.textContent = '0đ';
+                        totalPriceEl.textContent = '0đ';
+                        rawTotalAmount = 0;
+
+                        updatePaymentInfo();
+                        return;
+                    }
+
+                    countBadge.textContent = totalItems;
+                    countBadge.classList.remove('opacity-0');
+
+                    if (totalItems >= 7 && totalItems < 10) {
+                        const neededItems = 10 - totalItems;
+                        shippingNoticeText.textContent = `Mua thêm ${neededItems} ly nữa để được Miễn Phí Ship bạn nhé!`;
+                        shippingNotice.classList.remove('hidden');
+                    } else {
+                        shippingNotice.classList.add('hidden');
+                    }
+
+                    cart.forEach(item => {
+                        drinkTotalAmount += item.price * item.quantity;
+                        const itemHTML = `
+                            <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+                                <div class="flex items-center gap-3">
+                                    <img src="${item.img}" onerror="this.src='https://placehold.co/100x100/f97316/ffffff?text=Drink'" class="w-12 h-12 object-cover rounded-xl shadow-sm" alt="${item.name}">
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 text-sm">${item.name}</h4>
+                                        <p class="text-xs text-orange-600 font-semibold">${formatMoney(item.price)}</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 bg-gray-100 px-2 py-1 rounded-lg">
+                                    <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="-1">-</button>
+                                    <span class="text-sm font-bold w-4 text-center">${item.quantity}</span>
+                                    <button class="quantity-btn w-6 h-6 text-gray-500 font-bold hover:text-orange-500 focus:outline-none" data-name="${item.name}" data-delta="1">+</button>
+                                </div>
+                            </div>
+                        `;
+                        itemsContainer.insertAdjacentHTML('beforeend', itemHTML);
+                    });
+
+                    const shippingFee = calculateShipping(totalItems);
+                    rawTotalAmount = drinkTotalAmount + shippingFee;
+
+                    subtotalPriceEl.textContent = formatMoney(drinkTotalAmount);
+                    shippingPriceEl.textContent = shippingFee === 0 ? 'Miễn phí' : formatMoney(shippingFee);
+                    totalPriceEl.textContent = formatMoney(rawTotalAmount);
+
+                    const currentMethod = document.querySelector('input[name="payment-method"]:checked');
+                    if (currentMethod && currentMethod.value === 'QR') {
+                        const qrImg = document.getElementById('qr-code-img');
+                        if (qrImg) qrImg.style.opacity = "0.3";
+                        updatePaymentInfo();
+                    }
+                }
+
+                function checkout() {
+                    if (cart.length === 0) {
+                        showToast('⚠️ Giỏ hàng của bạn đang trống! Hãy chọn món trước.');
+                        return;
+                    }
+
+                    const name = document.getElementById('customer-name').value.trim();
+                    const phone = document.getElementById('customer-phone').value.trim();
+                    const address = document.getElementById('customer-address').value.trim();
+                    const method = document.querySelector('input[name="payment-method"]:checked').value;
+
+                    if (!name || !phone || !address) {
+                        showToast('⚠️ Vui lòng điền đầy đủ Họ tên, Số điện thoại và Địa chỉ!');
+                        return;
+                    }
+
+                    let cartDetails = cart.map(item => `${item.name} (SL: ${item.quantity})`).join(', ');
+                    let totalPrice = document.getElementById('cart-total-price').textContent;
+                    let drinkPrice = document.getElementById('cart-subtotal-price').textContent;
+                    let shipPrice = document.getElementById('cart-shipping-price').textContent;
+                    const methodText = method === 'COD' ? "Tiền mặt (COD)" : "Chuyển khoản QR";
+
+                    const checkoutBtn = document.querySelector('button[onclick="checkout()"]');
+                    const originalText = checkoutBtn.textContent;
+                    checkoutBtn.textContent = "ĐANG GỬI ĐƠN HÀNG...";
+                    checkoutBtn.disabled = true;
+
+                    const telegramToken = "8900419046:AAHD6RCY_2gHnOv3o5Ohm1n6WlDa2_40urg";
+                    const telegramChatId = "7182547022";
+
+                    const cleanName = name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").replace(/[^a-zA-Z0-9\s]/g, "").replace(/\s+/g, '').toUpperCase();
+                    const syntaxText = method === 'QR' ? `\n🔤 Cú pháp gốc: TT_${cleanName}_${phone}` : '';
+
+                    const msgText = `🔔 ĐƠN HÀNG MỚI!\n👤 Khách: ${name}\n📞 SĐT: ${phone}\n📍 Địa chỉ: ${address}\n🛒 Món: ${cartDetails}\n💵 Tiền nước: ${drinkPrice}\n🚚 Phí ship: ${shipPrice}\n💰 Tổng thanh toán: ${totalPrice}\n💳 Thanh toán: ${methodText}${syntaxText}`;
+
+                    fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ chat_id: telegramChatId, text: msgText })
+                    }).catch(err => console.error("Lỗi gửi Telegram:", err));
+
+                    const formData = new URLSearchParams();
+                    formData.append('name', name);
+                    formData.append('phone', phone);
+                    formData.append('cartDetails', `${cartDetails} [Tiền nước: ${drinkPrice}, Ship: ${shipPrice}, Hình thức: ${methodText}]`);
+                    formData.append('totalPrice', totalPrice);
+                    formData.append('address', address);
+
+                    const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyoDTUP-I-t10YMEtHSHNq1TkzQDpgEDqfejPFhsrzqot1vU9Glo_Y23iniLIS_MeaM4A/exec';
+
+                    fetch(googleScriptUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: formData.toString()
+                    })
+                        .then(() => {
+                            showToast(`🎉 Đặt hàng thành công! Quán sẽ gọi xác nhận qua số ${phone}`);
+
+                            cart = [];
+                            document.getElementById('customer-name').value = '';
+                            document.getElementById('customer-phone').value = '';
+                            document.getElementById('customer-address').value = '';
+                            switchPayment('COD');
+                            updateCartUI();
+                            toggleCart();
+                        })
+                        .finally(() => {
+                            checkoutBtn.textContent = originalText;
+                            checkoutBtn.disabled = false;
+                        });
+                }
     </script>
     <a href="https://zalo.me/0898222465" target="_blank" rel="noopener noreferrer" class="zalo-float shadow-xl flex items-center justify-center" title="Chat qua Zalo">
-        <img src="./image/zalo.jpg" alt="Zalo" class="w-full h-full object-cover">
+        <img src="./image/zalo.jpg" onerror="this.src='https://placehold.co/100x100/0068ff/ffffff?text=Zalo'" alt="Zalo" class="w-full h-full object-cover">
     </a>
 </body>
 </html>
